@@ -79,6 +79,9 @@ func csvFile(r io.Reader) (*types.Process, error) {
 		TotalByMonth:        make(map[string]int),
 	}
 
+	var numDebitTransactions int
+	var numCreditTransactions int
+
 	for _, row := range rows {
 
 		if len(row) != 3 {
@@ -103,12 +106,21 @@ func csvFile(r io.Reader) (*types.Process, error) {
 
 		if transaction > 0 {
 			processResult.AverageCreditAmount += transaction
+			numCreditTransactions++
 		} else {
 			processResult.AverageDebitAmount += transaction
+			numDebitTransactions++
 		}
 
 		processResult.TotalByMonth[month] += 1
 		processResult.TotalBalance += transaction
+	}
+
+	if numCreditTransactions > 0 {
+		processResult.AverageCreditAmount /= float64(numCreditTransactions)
+	}
+	if numDebitTransactions > 0 {
+		processResult.AverageDebitAmount /= float64(numDebitTransactions)
 	}
 
 	return processResult, nil
