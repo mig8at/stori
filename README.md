@@ -1,6 +1,14 @@
 # AWS Lambda Function - Summary
+Esta función Lambda de AWS, denominada `summary`
 
-Este proyecto incluye una función Lambda de AWS escrita en Golang que se encarga de [...].
+1. **Lectura de archivos CSV desde S3**: La función inicialmente lee un archivo CSV almacenado en un bucket de Amazon S3. Este archivo contiene una lista de transacciones financieras que necesitan ser procesadas.
+
+2. **Procesamiento de Datos**: Una vez obtenido el archivo, la función lo procesa para calcular varios parámetros estadísticos como el balance total, la cantidad media de débito y crédito, y la distribución de transacciones por mes.
+
+3. **Envío de correo electrónico**: Tras el procesamiento de los datos, la función utiliza Amazon Simple Email Service (SES) para enviar un resumen de las estadísticas calculadas a una dirección de correo electrónico específica.
+
+4. **Almacenamiento en DynamoDB**: Finalmente, todos los datos procesados y calculados se almacenan en una tabla de Amazon DynamoDB para futuras consultas y análisis.
+
 
 ## Requisitos previos
 
