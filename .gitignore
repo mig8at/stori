@@ -1,0 +1,45 @@
+# Archivos binarios
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Ficheros de paquete
+*.o
+*.a
+*.swp
+
+# Folders
+vendor/
+
+# Archivos generados por las herramientas
+*.out
+
+# Archivos generados durante la compilación
+dist/
+
+# Archivos relacionados con IDE y editores
+.idea/
+*.sln
+*.suo
+*.swp
+*.user
+*.userprefs
+*.DS_Store
+.vscode/
+
+# Log files
+*.log
+
+# AWS SAM: Ignora las carpetas de despliegue SAM
+.aws-sam/
+
+# Archivos de configuración local, si los hay
+config.yaml
+.env
+
+# Archivos específicos del proyecto que puedas querer ignorar
+# (añade aquí cualquier otro archivo que quieras ignorar)
+deployment.zip
+main
