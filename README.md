@@ -26,7 +26,7 @@ Este proyecto procesa un archivo CSV que contiene una lista de transacciones de 
 1. Clona este repositorio.
 
     ```shell
-    git clone https://github.com/yourusername/stori-transaction-summary.git
+    git clone https://github.com/mig8at/stori.git    
     ```
 
 2. Cambia al directorio del proyecto.
