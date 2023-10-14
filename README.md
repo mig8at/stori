@@ -1,67 +1,36 @@
-# Stori Transaction Summary Processor
+# AWS Lambda Function - Summary
 
-Este proyecto procesa un archivo CSV que contiene una lista de transacciones de débito y crédito. Luego, envía un resumen de estas transacciones por correo electrónico.
+Este proyecto incluye una función Lambda de AWS escrita en Golang que se encarga de [...].
 
-## Requisitos
+## Requisitos previos
 
-- Go 1.15 o superior
-- AWS CLI configurado
-- Cuenta de AWS con acceso a S3, Lambda y SES
+- AWS CLI instalado y configurado.
+- Go instalado (versión 1.x).
+- Git instalado.
+- Cuenta en AWS.
 
-## Configuración
+## Pasos
 
-1. Configura tus variables de entorno para el correo electrónico de destino y de origen en tu función AWS Lambda.
+### Crear una función Lambda en AWS
 
-    ```shell
-    EMAIL_TO=your.email@example.com
-    EMAIL_FROM=sender.email@example.com
-    ```
+1. Ve al panel de AWS Lambda y haz clic en "Crear función".
+2. Elige "Crear desde cero" e introduce los detalles necesarios.
+   - Nombre de la función: `summary`
+   - Lenguaje de ejecución: `Go 1.x`
+3. Haz clic en "Crear función".
 
-2. Crea un bucket S3 donde se guardarán los archivos CSV de transacciones.
+### Configurar permisos IAM
 
-3. Configura una función Lambda para ejecutar el código. Asegúrate de otorgar los permisos necesarios para acceder a S3 y SES.
+1. Ve al panel de IAM en AWS.
+2. Crea un nuevo rol con permisos para ejecutar Lambda y acceder a otros recursos necesarios (como DynamoDB, S3, SES, etc.).
 
-## Instalación
-
-1. Clona este repositorio.
-
-    ```shell
-    git clone https://github.com/mig8at/stori.git    
-    ```
-
-2. Cambia al directorio del proyecto.
-
-    ```shell
-    cd stori-transaction-summary
-    ```
-
-3. Ejecuta el siguiente comando para construir el proyecto.
-
-    ```shell
-    go build .
-    ```
-
-4. Sube el ejecutable a tu función Lambda en AWS.
-
-## Uso
-
-1. Sube tu archivo CSV de transacciones al bucket de S3.
-
-2. Invoca la función Lambda manualmente o configura un disparador, como un evento de S3 cuando se sube un nuevo archivo.
-
-3. Verifica tu correo electrónico para el resumen de transacciones.
-
-## Configuración
-
-### Permisos de IAM
-
-Es necesario configurar un rol de IAM con los siguientes permisos para que la función Lambda pueda interactuar con S3, SES y DynamoDB:
+**Ejemplo de política IAM:**
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
+  "Version": "2012-10-17",
+  "Statement": [
+     {
             "Effect": "Allow",
             "Action": [
                 "s3:GetObject",
@@ -92,5 +61,24 @@ Es necesario configurar un rol de IAM con los siguientes permisos para que la fu
             ],
             "Resource": "*"
         }
-    ]
+  ]
 }
+```
+
+
+## Clonar el repositorio
+
+Para obtener una copia del código en tu máquina local, sigue estos pasos:
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/mig8at/stori.git
+
+# Cambiar al directorio del proyecto
+cd stori
+
+# Dar permisos de ejecución al script
+chmod +x deploy.sh
+
+# Ejecutar el script de despliegue
+./deploy.sh
